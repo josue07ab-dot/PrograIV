@@ -1,0 +1,388 @@
+/* =========================================================
+   TecnoAccesorios - Identidad visual
+   ---------------------------------------------------------
+   Paleta y tipografías del documento del Avance 1.
+   Todos usan estas variables y clases; no pongan colores
+   "a mano" en sus páginas para que todo se vea igual.
+   Si necesitan estilos propios, agréguenlos al final en
+   la sección de su página (no creen otro archivo CSS).
+   Responsable: Josué Abarca Barahona
+   ========================================================= */
+
+:root {
+  /* Paleta */
+  --ta-dark:          #0e1a2b;   /* azul noche: barra, pie y títulos */
+  --ta-primary:       #1f5eff;   /* azul eléctrico: botones y enlaces */
+  --ta-primary-hover: #1648c7;
+  --ta-accent:        #00c2a8;   /* turquesa: detalles y contador */
+  --ta-bg:            #f4f6fb;   /* fondo general */
+  --ta-card:          #ffffff;
+  --ta-text:          #1d2433;
+
+  /* Tipografías (Google Fonts) */
+  --ta-font-headings: "Space Grotesk", system-ui, sans-serif;
+  --ta-font-body:     "Inter", system-ui, sans-serif;
+
+  --ta-radius: 14px;
+  --ta-shadow: 0 6px 20px rgba(14, 26, 43, 0.08);
+
+  /* Bootstrap toma estos valores */
+  --bs-body-font-family: var(--ta-font-body);
+  --bs-body-bg: var(--ta-bg);
+  --bs-body-color: var(--ta-text);
+  --bs-link-color-rgb: 31, 94, 255;
+}
+
+html, body { overflow-x: hidden; }   /* sin desplazamiento horizontal accidental */
+
+h1, h2, h3, h4, h5, .store-brand {
+  font-family: var(--ta-font-headings);
+  font-weight: 700;
+  color: var(--ta-dark);
+}
+
+img { max-width: 100%; height: auto; }
+
+/* ---------- Foco visible (navegación con teclado) ---------- */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+.btn:focus-visible {
+  outline: 3px solid var(--ta-accent);
+  outline-offset: 2px;
+  box-shadow: none;
+}
+
+.skip-link {
+  position: absolute; left: 1rem; top: .5rem; z-index: 2000;
+  background: #fff; padding: .5rem 1rem; border-radius: 8px;
+}
+
+/* ---------- Encabezado ---------- */
+.main-navbar { background: var(--ta-dark); }
+.main-navbar .store-brand { color: #fff; font-size: 1.35rem; }
+.main-navbar .nav-link { color: rgba(255, 255, 255, .8); }
+.main-navbar .nav-link:hover,
+.main-navbar .nav-link.active { color: #fff; text-decoration: underline; text-underline-offset: 6px; }
+.accent-text { color: var(--ta-accent); }
+.bg-accent { background: var(--ta-accent) !important; color: var(--ta-dark) !important; }
+.demo-bar { background: #1b2a42; color: #dbe4f3; }
+
+/* ---------- Botones propios ---------- */
+.btn-main {
+  background: var(--ta-primary);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+}
+.btn-main:hover,
+.btn-main:focus-visible { background: var(--ta-primary-hover); color: #fff; }
+.btn-main:disabled { background: #8aa6e8; color: #fff; }
+
+.btn-outline-main {
+  background: transparent;
+  color: var(--ta-primary);
+  border: 2px solid var(--ta-primary);
+  border-radius: 10px;
+  font-weight: 600;
+}
+.btn-outline-main:hover { background: var(--ta-primary); color: #fff; }
+
+/* ---------- Precios (mismo formato en toda la tienda) ---------- */
+.price {
+  font-family: var(--ta-font-headings);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--ta-dark);
+}
+
+/* ---------- Secciones ---------- */
+.section { padding-top: 3rem; padding-bottom: 3rem; }   /* solo vertical: respeta el margen lateral de .container */
+.section-title { margin-bottom: 1.5rem; }
+.section-title::after {
+  content: ""; display: block; width: 56px; height: 4px;
+  background: var(--ta-accent); border-radius: 4px; margin-top: .5rem;
+}
+
+/* =========================================================
+   INICIO (Josué)
+   ========================================================= */
+.hero {
+  background: linear-gradient(135deg, var(--ta-dark) 0%, #17305a 60%, #1f5eff 130%);
+  color: #fff;
+  padding: 4rem 0;
+}
+.hero h1 { color: #fff; font-size: clamp(1.9rem, 4vw, 3rem); }
+.hero .lead { color: rgba(255, 255, 255, .85); }
+.hero .btn-outline-main { color: #fff; border-color: #fff; }
+.hero .btn-outline-main:hover { background: #fff; color: var(--ta-dark); }
+.hero-icon { font-size: clamp(5rem, 14vw, 9rem); line-height: 1; }
+
+.benefit {
+  background: var(--ta-card);
+  border-radius: var(--ta-radius);
+  box-shadow: var(--ta-shadow);
+  padding: 1.5rem;
+  height: 100%;
+}
+.benefit-icon { font-size: 2rem; }
+
+.category-card {
+  border: none;
+  border-radius: var(--ta-radius);
+  overflow: hidden;
+  box-shadow: var(--ta-shadow);
+  transition: transform .3s ease;
+}
+.category-card img { aspect-ratio: 4 / 3; object-fit: cover; }
+.category-card:hover,
+.category-card:focus-within { transform: translateY(-4px) scale(1.02); }
+.category-card .stretched-link { color: var(--ta-dark); text-decoration: none; }
+
+.accordion-button:not(.collapsed) { background: #e8efff; color: var(--ta-dark); }
+
+/* =========================================================
+   CATÁLOGO Y DETALLE 
+   Responsable: Bianka Gamboa
+   ========================================================= */
+
+
+:root {
+  /* Variables sugeridas si no las tienes, para dar un toque tech limpio */
+  --ta-radius: 12px;
+  --ta-shadow: 0 4px 20px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
+  --ta-shadow-hover: 0 12px 30px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(var(--ta-accent-rgb, 0, 0, 0), 0.05);
+}
+
+.product-card {
+  border: 1px solid rgba(0, 0, 0, 0.06); /* Un borde sutil estructura mejor el producto en entornos tech */
+  border-radius: var(--ta-radius);
+  box-shadow: var(--ta-shadow);
+  overflow: hidden;
+  background: #fff;
+  transition: transform .35s cubic-bezier(0.25, 1, 0.5, 1), 
+              box-shadow .35s cubic-bezier(0.25, 1, 0.5, 1), 
+              border-color .35s ease;
+}
+
+.product-card:hover { 
+  transform: translateY(-6px); 
+  box-shadow: var(--ta-shadow-hover);
+  border-color: rgba(0, 0, 0, 0.12);
+}
+
+/* Contenedor de la imagen del producto */
+.product-card .card-img-top {
+  aspect-ratio: 1 / 1;
+  object-fit: cover; 
+  background: #fcfcfd; 
+  padding: 0; 
+  transition: transform .4s ease;
+}
+
+.product-card:hover .card-img-top {
+  transform: scale(1.03); 
+}
+
+/* Etiquetas de Marca */
+.brand-label {
+  font-family: var(--ta-font-headings), sans-serif;
+  font-size: .7rem;
+  font-weight: 800;
+  letter-spacing: .08em; 
+  text-transform: uppercase;
+  color: #8a92a6; 
+  margin-bottom: .25rem;
+}
+
+/* Ajustes para textos dentro de la tarjeta (Títulos y Precios) */
+.product-card .card-body {
+  padding: 1.25rem;
+}
+
+.product-card .card-title {
+  font-size: .95rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: #1e293b;
+  margin-bottom: .5rem;
+}
+
+/* Estilos para Badges (Disponible, Últimas unidades, Agotado) */
+.badge {
+  font-size: .7rem;
+  font-weight: 600;
+  padding: .35rem .75rem;
+  border-radius: 6px;
+  letter-spacing: .02em;
+}
+
+/* Botón de acción principal */
+.product-card .btn-primary {
+  background-color: var(--ta-primary);
+  border: none;
+  font-weight: 600;
+  font-size: .85rem;
+  letter-spacing: .03em;
+  padding: .6rem 1.25rem;
+  border-radius: 8px;
+  transition: background-color .2s ease, transform .2s ease;
+}
+
+.product-card .btn-primary:hover {
+  background-color: var(--ta-primary-dark, #004ecc);
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   VISTA DE DETALLE / OTROS COMPONENTES
+   ========================================================= */
+.product-image {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  background: #fff;
+  border-radius: var(--ta-radius);
+  box-shadow: var(--ta-shadow);
+  padding: 1.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.spec-sheet {
+  background: var(--ta-card, #f8fafc);
+  border-left: 4px solid var(--ta-accent);
+  border-radius: 8px;
+  padding: 1.25rem;
+  margin: 1.5rem 0;
+}
+
+.spec-sheet dt { 
+  font-family: var(--ta-font-headings); 
+  color: #334155; 
+  font-size: .85rem;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+.spec-sheet dd { 
+  margin-bottom: .75rem; 
+  color: #64748b;
+}
+
+.spec-sheet dd:last-child { margin-bottom: 0; }
+
+.product-thumbs {
+  display: flex;
+  gap: .5rem;
+  margin-top: .75rem;
+}
+
+.product-thumb {
+  width: 72px;
+  height: 72px;
+  padding: 0;
+  overflow: hidden;
+  background: #fff;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  opacity: .7;
+  cursor: pointer;
+  transition: all .2s ease;
+}
+
+.product-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.product-thumb:hover,
+.product-thumb.active { opacity: 1; border-color: var(--ta-accent); }
+.product-thumb:focus-visible { outline: 3px solid var(--ta-accent); outline-offset: 2px; }
+
+.image-credit {
+  font-size: .8rem;
+  color: var(--bs-secondary-color);
+  margin-top: .5rem;
+}
+
+.image-credits summary { cursor: pointer; font-weight: 600; }
+
+
+
+/* =========================================================
+   CARRITO Y PAGO (Limberth)
+   ========================================================= */
+.cart-line {
+  background: var(--ta-card);
+  border-radius: var(--ta-radius);
+  box-shadow: var(--ta-shadow);
+  padding: 1rem;
+}
+.cart-line + .cart-line { margin-top: 1rem; }
+.cart-thumb {
+  width: 88px;
+  height: 88px;
+  object-fit: contain;
+  background: #fff;
+  border: 1px solid #e3e8f2;
+  border-radius: 10px;
+  padding: .35rem;
+}
+.qty-control { max-width: 150px; }
+.qty-control input { text-align: center; }
+.qty-control input::-webkit-inner-spin-button { margin: 0; }
+.line-subtotal { font-family: var(--ta-font-headings); font-weight: 700; color: var(--ta-dark); }
+.order-summary {
+  background: var(--ta-card);
+  border-radius: var(--ta-radius);
+  box-shadow: var(--ta-shadow);
+  padding: 1.5rem;
+  position: sticky;
+  top: 1rem;
+}
+.summary-total { font-size: 1.5rem; }
+.empty-state {
+  background: var(--ta-card);
+  border-radius: var(--ta-radius);
+  box-shadow: var(--ta-shadow);
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
+.empty-state-icon { font-size: 3.5rem; }
+.order-number {
+  font-family: var(--ta-font-headings);
+  font-size: 1.75rem;
+  color: var(--ta-primary);
+  letter-spacing: .05em;
+}
+
+/* =========================================================
+   FORMULARIOS Y CUENTAS (Andrea)
+   Agregar aquí los estilos de registro, acceso, cuenta,
+   contacto y panel administrativo.
+   ========================================================= */
+.form-card {
+  background: var(--ta-card);
+  border-radius: var(--ta-radius);
+  box-shadow: var(--ta-shadow);
+  padding: 1.5rem;
+}
+
+/* ---------- Pie de página ---------- */
+.site-footer { background: var(--ta-dark); color: #c9d3e4; }
+.site-footer .store-brand,
+.site-footer h2 { color: #fff; }
+.site-footer a { color: #c9d3e4; }
+.site-footer a:hover { color: #fff; }
+
+/* ---------- Adaptable: 390 / 820 / 1280 px ---------- */
+@media (max-width: 991.98px) {
+  .main-navbar .navbar-collapse { padding-top: 1rem; }
+  .order-summary { position: static; }
+}
+
+@media (max-width: 575.98px) {
+  .hero { padding: 2.5rem 0; text-align: center; }
+  .hero .d-flex { justify-content: center; }
+  .section { padding-top: 2rem; padding-bottom: 2rem; }
+  .cart-thumb { width: 64px; height: 64px; }
+}

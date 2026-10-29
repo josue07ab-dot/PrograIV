@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Finalizar compra | TecnoAccesorios</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<!-- Responsable: Limberth Arce Orúe
+     Avance 2: ruta /checkout (GET muestra el formulario, POST crea el pedido
+     en una transacción) y redirección a /order/<id>/confirmation. -->
+<body data-page="checkout">
+
+  <div id="site-header"></div>
+
+  <main id="main-content" class="container section">
+    <h1 class="section-title" id="page-title">Finalizar compra</h1>
+
+    <!-- Lista de errores del formulario -->
+    <div id="messages" aria-live="polite"></div>
+
+    <!-- ===== Sin productos: no se permite comprar ===== -->
+    <div id="empty-checkout" class="empty-state d-none">
+      <p class="empty-state-icon" aria-hidden="true">🛒</p>
+      <h2 class="h4">No hay productos para comprar</h2>
+      <p class="mb-4">Tu carrito está vacío. Agregá al menos un producto antes de finalizar la compra.</p>
+      <a href="catalog.html" class="btn btn-main">Ir al catálogo</a>
+    </div>
+
+    <!-- ===== Formulario + resumen ===== -->
+    <div id="checkout-content" class="row g-4 d-none">
+      <section class="col-12 col-lg-7" aria-labelledby="form-title">
+        <div class="form-card">
+          <h2 id="form-title" class="h5 mb-1">Datos de contacto y entrega</h2>
+          <p class="small text-body-secondary">Los campos marcados con <span aria-hidden="true">*</span><span class="visually-hidden">asterisco</span> son obligatorios. Usá datos ficticios.</p>
+
+          <!-- Avance 2: method="post" action="/checkout" + token CSRF.
+               Campos obligatorios en el servidor: name, email, phone, address. -->
+          <form id="checkout-form" novalidate>
+            <div class="mb-3">
+              <label for="name" class="form-label">Nombre completo *</label>
+              <input type="text" id="name" name="name" class="form-control" required
+                     minlength="3" maxlength="80" autocomplete="name" aria-describedby="name-error">
+              <div id="name-error" class="invalid-feedback"></div>
+            </div>
+
+            <div class="row">
+              <div class="col-12 col-md-7 mb-3">
+                <label for="email" class="form-label">Correo electrónico *</label>
+                <input type="email" id="email" name="email" class="form-control" required
+                       maxlength="120" autocomplete="email" placeholder="nombre@ejemplo.com"
+                       aria-describedby="email-error">
+                <div id="email-error" class="invalid-feedback"></div>
+              </div>
+              <div class="col-12 col-md-5 mb-3">
+                <label for="phone" class="form-label">Teléfono *</label>
+                <input type="tel" id="phone" name="phone" class="form-control" required
+                       maxlength="12" autocomplete="tel" placeholder="8888-8888"
+                       aria-describedby="phone-help phone-error">
+                <div id="phone-help" class="form-text">8 dígitos, con o sin guion.</div>
+                <div id="phone-error" class="invalid-feedback"></div>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="address" class="form-label">Dirección de entrega *</label>
+              <textarea id="address" name="address" class="form-control" rows="3" required
+                        minlength="10" maxlength="200" autocomplete="street-address"
+                        placeholder="Provincia, cantón, distrito y señas" aria-describedby="address-error"></textarea>
+              <div id="address-error" class="invalid-feedback"></div>
+            </div>
+
+            <div class="form-check mb-4">
+              <input class="form-check-input" type="checkbox" id="accept" name="accept" required
+                     aria-describedby="accept-error">
+              <label class="form-check-label" for="accept">
+                Entiendo que esta es una <strong>compra simulada</strong> de un proyecto académico y que no se realizará ningún pago. *
+              </label>
+              <div id="accept-error" class="invalid-feedback"></div>
+            </div>
+
+            <button type="submit" class="btn btn-main btn-lg w-100">Revisar y confirmar compra</button>
+          </form>
+        </div>
+      </section>
+
+      <!-- Resumen del pedido (Avance 2: {% for line in lines %}) -->
+      <aside class="col-12 col-lg-5" aria-labelledby="summary-title">
+        <div class="order-summary">
+          <h2 id="summary-title" class="h5">Resumen del pedido</h2>
+          <ul id="summary-lines" class="list-unstyled mb-0"></ul>
+          <hr>
+          <div class="d-flex justify-content-between align-items-baseline">
+            <span class="fw-semibold">Total</span>
+            <span id="summary-total" class="price summary-total"></span>
+          </div>
+          <a href="cart.html" class="small d-inline-block mt-2">Modificar carrito</a>
+        </div>
+      </aside>
+    </div>
+
+    <!-- ===== Confirmación final (se muestra después de confirmar) ===== -->
+    <div id="order-done" class="empty-state d-none" tabindex="-1">
+      <p class="empty-state-icon" aria-hidden="true">✅</p>
+      <h2 class="h3">¡Compra simulada confirmada!</h2>
+      <p class="mb-1">Número de pedido de demostración:</p>
+      <p id="order-number" class="order-number"></p>
+      <p id="order-detail" class="mb-1"></p>
+      <p class="small text-body-secondary">
+        Esta compra solo existe en este navegador. No se envió ni se guardó información en ningún servidor.
+      </p>
+      <a href="catalog.html" class="btn btn-main mt-2">Volver al catálogo</a>
+    </div>
+
+    <!-- ===== Modal: confirmación explícita de la compra ===== -->
+    <div class="modal fade" id="confirm-modal" tabindex="-1" aria-labelledby="confirm-modal-title" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title h5" id="confirm-modal-title">Confirmar compra simulada</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+          </div>
+          <div class="modal-body">
+            <p class="mb-2">Revisá los datos antes de confirmar:</p>
+            <dl class="row small mb-2" id="confirm-data"></dl>
+            <p class="mb-0">Total a pagar (simulado): <strong id="confirm-total" class="price"></strong></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-main" data-bs-dismiss="modal">Volver y corregir</button>
+            <button type="button" id="btn-confirm-order" class="btn btn-main">Confirmar compra</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/checkout.js"></script>
+</body>
+</html>

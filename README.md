@@ -12,7 +12,7 @@ Integrantes: Limberth Arce Orúe · Josué Abarca Barahona · Bianka Martínez G
 3. Opcional: en VS Code, clic derecho sobre `index.html` → *Open with Live Server*
    para que la página se recargue sola al guardar cambios.
 
-En el Avance 2 la tienda se ejecutará con Flask (`python run.py`); no se usa Apache ni XAMPP.
+En el Avance 2 la tienda se ejecutará con Flask (`python run.py`).
 
 ## Convención del código
 

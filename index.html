@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="TecnoAccesorios: accesorios tecnológicos con marca y compatibilidad verificada.">
+  <title>Inicio | TecnoAccesorios</title>
+
+  <!-- Bootstrap 5.3 (versión estable) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Tipografías -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <!-- Estilos propios (siempre después de Bootstrap) -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<!-- Responsable: Josué Abarca Barahona -->
+<body data-page="home">
+
+  <!-- Encabezado compartido: lo dibuja js/layout.js (Avance 2: base.html) -->
+  <div id="site-header"></div>
+
+  <main id="main-content">
+
+    <!-- ===== Portada: identidad y propuesta comercial ===== -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container">
+        <div class="row align-items-center g-4">
+          <div class="col-12 col-md-7">
+            <p class="text-uppercase small fw-semibold accent-text mb-2">Accesorios tecnológicos</p>
+            <h1 id="hero-title">Conectá, cargá y escuchá sin adivinar si es compatible</h1>
+            <p class="lead my-3">
+              En TecnoAccesorios cada producto indica su <strong>marca</strong> y con qué dispositivos
+              es <strong>compatible</strong>, para que comprés con seguridad.
+            </p>
+            <div class="d-flex flex-wrap gap-2">
+              <a href="catalog.html" class="btn btn-main btn-lg">Ver catálogo</a>
+              <a href="#featured" class="btn btn-outline-main btn-lg">Productos destacados</a>
+            </div>
+          </div>
+          <div class="col-12 col-md-5 text-center">
+            <span class="hero-icon" aria-hidden="true">🎧🔌</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Beneficios ===== -->
+    <section class="section" aria-labelledby="benefits-title">
+      <div class="container">
+        <h2 id="benefits-title" class="section-title">¿Por qué comprar con nosotros?</h2>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+          <div class="col">
+            <div class="benefit">
+              <span class="benefit-icon" aria-hidden="true">✅</span>
+              <h3 class="h5 mt-2">Compatibilidad clara</h3>
+              <p class="mb-0">Cada ficha indica con qué teléfonos, computadoras o consolas funciona.</p>
+            </div>
+          </div>
+          <div class="col">
+            <div class="benefit">
+              <span class="benefit-icon" aria-hidden="true">🏷️</span>
+              <h3 class="h5 mt-2">Marcas reconocidas</h3>
+              <p class="mb-0">Trabajamos con marcas de accesorios con garantía y respaldo.</p>
+            </div>
+          </div>
+          <div class="col">
+            <div class="benefit">
+              <span class="benefit-icon" aria-hidden="true">💰</span>
+              <h3 class="h5 mt-2">Precios en colones</h3>
+              <p class="mb-0">Sin conversiones ni sorpresas: el total que ves es el total de tu pedido.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Categorías (Avance 2: {% for c in categories %}) ===== -->
+    <section class="section pt-0" aria-labelledby="categories-title">
+      <div class="container">
+        <h2 id="categories-title" class="section-title">Comprá por categoría</h2>
+        <div id="category-list" class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
+          <!-- js/home.js genera las tarjetas desde CATEGORIES -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Destacados (Avance 2: {% for p in featured %}) ===== -->
+    <section id="featured" class="section pt-0" aria-labelledby="featured-title">
+      <div class="container">
+        <div class="d-flex flex-wrap justify-content-between align-items-end gap-2">
+          <h2 id="featured-title" class="section-title">Productos destacados</h2>
+          <a href="catalog.html" class="mb-4">Ver todos los productos →</a>
+        </div>
+        <div id="featured-list" class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4">
+          <!-- js/home.js genera las tarjetas desde PRODUCTS (featured: true) -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Preguntas frecuentes: componente adicional (acordeón) ===== -->
+    <section class="section pt-0" aria-labelledby="faq-title">
+      <div class="container">
+        <h2 id="faq-title" class="section-title">Preguntas frecuentes</h2>
+        <div class="accordion" id="faq-accordion">
+          <div class="accordion-item">
+            <h3 class="accordion-header">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1"
+                      aria-expanded="true" aria-controls="faq1">
+                ¿Cómo sé si un accesorio sirve para mi dispositivo?
+              </button>
+            </h3>
+            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faq-accordion">
+              <div class="accordion-body">
+                En el detalle de cada producto aparece el apartado <strong>Compatibilidad</strong> con los
+                dispositivos y sistemas con los que funciona.
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2"
+                      aria-expanded="false" aria-controls="faq2">
+                ¿Las compras son reales?
+              </button>
+            </h3>
+            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faq-accordion">
+              <div class="accordion-body">
+                No. Este es un proyecto académico: la compra es simulada y no se procesan pagos.
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3"
+                      aria-expanded="false" aria-controls="faq3">
+                ¿Los precios incluyen envío o impuestos?
+              </button>
+            </h3>
+            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faq-accordion">
+              <div class="accordion-body">
+                Para esta versión se muestra únicamente el total de los productos en colones.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Pie compartido: lo dibuja js/layout.js -->
+  <div id="site-footer"></div>
+
+  <!-- Scripts: el orden importa -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/home.js"></script>
+</body>
+</html>

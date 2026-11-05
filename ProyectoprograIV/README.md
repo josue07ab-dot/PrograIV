@@ -121,3 +121,13 @@ Fragmentos reutilizables previstos: `base.html` (lo que hoy hace `layout.js`), `
 
 Listas que Jinja2 generará con `{% for %}`: categorías, destacados, catálogo, líneas del carrito,
 resumen del pedido, historial de pedidos y tablas del panel administrativo.
+
+
+## Implementación de Andrea — Avance 1
+
+- `register.html` y `js/register.js`: formulario accesible, validación del correo, contraseñas coincidentes y longitud de 15 a 128 caracteres.
+- `login.html` y `js/login.js`: acceso simulado con mensaje genérico de error; no se almacena la contraseña.
+- `account.html` y `js/account.js`: perfil de demostración, cambio de nombre temporal e historial ficticio de pedidos.
+- `admin.html` y `js/admin.js`: pestañas de productos, pedidos y clientes; edición/agregado temporal de productos y cambio del estado de clientes.
+- Los cambios de administración viven solo en memoria y se pierden al recargar. No hay autenticación ni permisos reales en esta versión estática; el selector de rol es exclusivamente para la demostración académica.
+- Para revisar el diseño adaptable, probar cada página a 390 px, 820 px y 1280 px desde las herramientas de desarrollador del navegador.

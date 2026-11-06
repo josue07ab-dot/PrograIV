@@ -2,7 +2,7 @@
    TecnoAccesorios - Funciones compartidas
    ---------------------------------------------------------
    Todas las páginas cargan este archivo DESPUÉS de data.js.
-   Usen estas funciones en vez de escribir las suyas, así
+   así
    catálogo, detalle, carrito y pago leen lo mismo.
    Responsable: Limberth Arce Orúe
    ========================================================= */

@@ -6,8 +6,8 @@ Integrantes: Limberth Arce Orúe · Josué Abarca Barahona · Bianka Martínez G
 
 ## Cómo ejecutarlo (Avance 1)
 
-1. Descomprimir la carpeta `ProyectoPrograIV` en cualquier ubicación
-   (por ejemplo `C:\Users\LAPTOP\OneDrive\Documents\ProyectoPrograIV`).
+1. Descomprimir la carpeta `PrograIV` en cualquier ubicación
+   (por ejemplo `C:\Users\LAPTOP\PrograIV`).
 2. Abrir `index.html` con doble clic (Chrome o Edge). No necesita servidor ni base de datos.
 3. Opcional: en VS Code, clic derecho sobre `index.html` → *Open with Live Server*
    para que la página se recargue sola al guardar cambios.

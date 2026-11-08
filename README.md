@@ -46,7 +46,7 @@ ProyectoPrograIV/
   js/common.js      Funciones compartidas (carrito, colones...)    Limberth
   js/cart.js        Carrito                                        Limberth
   js/checkout.js    Finalizar compra                               Limberth
-  js/register.js, login.js, account.js, admin.js                   Andrea
+  js/register.js, login.js, account.js, admin.js, form-helpers.js  Andrea
 
   img/products/     p01.jpg ... p12.jpg                            Bianka
   img/categories/   audio.jpg, charging.jpg, peripherals.jpg       Josué

@@ -17,6 +17,8 @@
     <p class="eyebrow">Gestión de la tienda</p>
     <h1 class="section-title">Panel administrativo</h1>
     <div id="messages" aria-live="polite"></div>
+    <div id="access-notice"></div>
+    <div id="page-content">
     <div class="alert alert-info" role="note"><strong>Vista de demostración:</strong> los cambios son temporales y no se guardan en una base de datos. El selector superior sirve únicamente para presentar las vistas del proyecto.</div>
     <ul class="nav nav-pills admin-tabs mb-4" id="admin-tabs" role="tablist">
       <li class="nav-item" role="presentation"><button class="nav-link active" id="products-tab" data-bs-toggle="pill" data-bs-target="#products-pane" type="button" role="tab" aria-controls="products-pane" aria-selected="true">Productos</button></li>
@@ -30,15 +32,15 @@
           <form id="admin-product-form" novalidate>
             <input type="hidden" id="product-id" name="product_id">
             <div class="row g-3">
-              <div class="col-12 col-md-6"><label for="product-name" class="form-label">Nombre del producto</label><input id="product-name" name="name" class="form-control" required></div>
-              <div class="col-12 col-md-6"><label for="product-brand" class="form-label">Marca</label><input id="product-brand" name="brand" class="form-control" required></div>
-              <div class="col-12"><label for="product-description" class="form-label">Descripción</label><textarea id="product-description" name="description" class="form-control" rows="2" required></textarea></div>
-              <div class="col-12 col-md-4"><label for="product-category" class="form-label">Categoría</label><select id="product-category" name="category_id" class="form-select" required><option value="">Seleccionar…</option></select></div>
-              <div class="col-12 col-md-4"><label for="product-price" class="form-label">Precio (₡)</label><input id="product-price" name="price" type="number" class="form-control" min="1" step="1" required></div>
-              <div class="col-12 col-md-4"><label for="product-stock" class="form-label">Existencias</label><input id="product-stock" name="stock" type="number" class="form-control" min="0" step="1" required></div>
-              <div class="col-12 col-md-6"><label for="product-image" class="form-label">Ruta de imagen (opcional)</label><input id="product-image" name="image" class="form-control" placeholder="img/products/p01.jpg"></div>
-              <div class="col-12 col-md-6"><label for="product-compatibility" class="form-label">Compatibilidad</label><input id="product-compatibility" name="compatibility" class="form-control" required></div>
-              <div class="col-12 d-flex flex-wrap gap-2"><button type="submit" class="btn btn-main">Guardar producto</button><button type="reset" id="reset-product-form" class="btn btn-outline-secondary">Limpiar formulario</button></div>
+              <div class="col-12 col-md-6"><label for="product-name" class="form-label">Nombre del producto</label><input id="product-name" name="name" class="form-control" required><div class="invalid-feedback">Escribe el nombre del producto (mínimo 2 caracteres).</div></div>
+              <div class="col-12 col-md-6"><label for="product-brand" class="form-label">Marca</label><input id="product-brand" name="brand" class="form-control" required><div class="invalid-feedback">Escribe la marca.</div></div>
+              <div class="col-12"><label for="product-description" class="form-label">Descripción</label><textarea id="product-description" name="description" class="form-control" rows="2" required></textarea><div class="invalid-feedback">Escribe una descripción de al menos 10 caracteres.</div></div>
+              <div class="col-12 col-md-4"><label for="product-category" class="form-label">Categoría</label><select id="product-category" name="category_id" class="form-select" required><option value="">Seleccionar…</option></select><div class="invalid-feedback">Selecciona una categoría.</div></div>
+              <div class="col-12 col-md-4"><label for="product-price" class="form-label">Precio (₡)</label><input id="product-price" name="price" type="number" class="form-control" min="1" step="1" required><div class="invalid-feedback">Escribe un precio entero mayor que cero.</div></div>
+              <div class="col-12 col-md-4"><label for="product-stock" class="form-label">Existencias</label><input id="product-stock" name="stock" type="number" class="form-control" min="0" step="1" required><div class="invalid-feedback">Escribe las existencias como número entero (0 o más).</div></div>
+              <div class="col-12 col-md-6"><label for="product-image" class="form-label">Ruta de imagen (opcional)</label><input id="product-image" name="image" class="form-control" placeholder="img/products/p01.jpg"><div class="invalid-feedback">Usa una ruta como img/products/p01.jpg o una dirección https://.</div></div>
+              <div class="col-12 col-md-6"><label for="product-compatibility" class="form-label">Compatibilidad</label><input id="product-compatibility" name="compatibility" class="form-control" required><div class="invalid-feedback">Escribe con qué dispositivos es compatible.</div></div>
+              <div class="col-12 d-flex flex-wrap gap-2"><button type="submit" class="btn btn-main">Guardar producto</button><button type="reset" id="reset-product-form" class="btn btn-outline-secondary">Limpiar formulario</button><button type="button" id="cancel-edit" class="btn btn-link d-none">Cancelar edición</button></div>
             </div>
           </form>
         </div>
@@ -48,15 +50,16 @@
         </div>
       </section>
       <section class="tab-pane fade" id="orders-pane" role="tabpanel" aria-labelledby="orders-tab" tabindex="0">
-        <div class="admin-panel"><h2 class="h4">Pedidos recientes</h2><div class="table-responsive"><table class="table table-hover align-middle"><caption class="visually-hidden">Pedidos de ejemplo</caption><thead><tr><th scope="col">Pedido</th><th scope="col">Cliente</th><th scope="col">Fecha</th><th scope="col">Total</th><th scope="col">Estado</th></tr></thead><tbody id="admin-orders-table"></tbody></table></div></div>
+        <div class="admin-panel"><h2 class="h4">Pedidos recientes</h2><div class="table-responsive"><table class="table table-hover align-middle"><caption class="visually-hidden">Pedidos de ejemplo</caption><thead><tr><th scope="col">Pedido</th><th scope="col">Cliente</th><th scope="col">Fecha</th><th scope="col">Total</th><th scope="col">Estado</th><th scope="col">Cambiar estado</th></tr></thead><tbody id="admin-orders-table"></tbody></table></div></div>
       </section>
       <section class="tab-pane fade" id="customers-pane" role="tabpanel" aria-labelledby="customers-tab" tabindex="0">
         <div class="admin-panel"><h2 class="h4">Clientes registrados</h2><div class="table-responsive"><table class="table table-hover align-middle"><caption class="visually-hidden">Clientes de ejemplo</caption><thead><tr><th scope="col">Nombre</th><th scope="col">Correo</th><th scope="col">Estado</th><th scope="col">Acción</th></tr></thead><tbody id="admin-customers-table"></tbody></table></div></div>
       </section>
     </div>
+    </div>
   </main>
   <div id="site-footer"></div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="js/data.js"></script><script src="js/common.js"></script><script src="js/layout.js"></script><script src="js/admin.js"></script>
+  <script src="js/data.js"></script><script src="js/common.js"></script><script src="js/layout.js"></script><script src="js/form-helpers.js"></script><script src="js/admin.js"></script>
 </body>
 </html>

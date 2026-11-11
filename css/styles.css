@@ -396,3 +396,10 @@ textarea:focus-visible,
   .admin-panel .table td.text-nowrap { white-space: normal !important; }
   .admin-panel .table td.text-nowrap .btn { margin-bottom: .25rem; }
 }
+   /* Foco visible en el menú y el selector de vista (accesibilidad) */
+   .main-navbar .nav-link:focus-visible,
+   .demo-bar .form-select:focus-visible {
+     outline: 3px solid var(--ta-accent);
+     outline-offset: 2px;
+     box-shadow: none;
+   }

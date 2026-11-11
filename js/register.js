@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     "register-confirm": value => {
       if (value.length === 0) return "Confirma tu contraseña.";
-      return value === passwordInput.value ? "" : "Las contraseñas no coinciden.";
+      return value === passwordInput.value ? "" : "Las contraseñas no coinciden. Escribe la misma contraseña en los dos campos.";
     }
   });
 
@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
     counter.textContent = `0 / ${PASSWORD_MAX}`;
     passwordInput.type = "password";
     confirmInput.type = "password";
-    showAlert("messages", "success", "¡Registro simulado correctamente! Ya puedes ir a Ingresar.");
+    showAlert("messages", "success", "¡Registro simulado correctamente! Como es una demostración, la cuenta no se guarda: para ingresar usa una cuenta de demostración.");
     nameInput.focus();
   });
 });
